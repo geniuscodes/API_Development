@@ -1,9 +1,12 @@
+using API_Development.CustomFilters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Development.Controllers;
 
+
 [ApiController]
 [Route("[controller]")]
+[BasicCustomActionFilterAttribute("ControllerLevel")]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
@@ -18,6 +21,7 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
+    [BasicCustomActionFilterAttribute("ActionLevel")]
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
